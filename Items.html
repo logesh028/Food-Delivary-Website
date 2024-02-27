@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zone Delivery App</title>
+    
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('Images/items.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        header {
+            background-image: url('header.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px; /* Added max-width to control container width */
+            margin: 0 auto; /* Center align container */
+        }
+
+        .food-item {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: calc(45.33% - 20px); /* Adjusted width for three cards per row and margin */
+            margin-bottom: 20px; /* Added margin to create space between rows */
+            display: flex; /* Added */
+            flex-direction: column; /* Added */
+            justify-content: space-between; /* Added */
+        }
+        
+        .food-item img {
+            width: 100%;
+            height: 220px; /* Increased height */
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .food-info {
+            padding: 10px;
+        }
+        
+        .food-title {
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        .food-desc {
+            color: #666;
+            margin: 5px 0;
+        }
+        
+        .food-price {
+            color: #ff6347;
+            margin-top: 10px;
+        }
+        
+        button {
+            width: 94%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgb(255, 0, 17);
+        }
+        
+        
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .selected-items-container {
+            border: 2px solid #ccc;
+            padding: 10px;
+        }
+
+        .selected-item {
+            margin-bottom: 10px;
+        }
+
+        .selected-item p {
+            margin: 0;
+            padding: 5px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .selected-item p strong {
+            font-weight: bold;
+            color: #333;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ZONE</h1>
+        <p>Get food from where you are</p>
+    </header>
+
+    <nav>
+        <a href="homepage.html">Home</a>
+        <a href="Items.html">Items</a>
+        <a href="order.html">Order</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="container">
+        <div class="food-item">
+            <img src="Images/burger.jpg" alt="Food 1">
+            <div class="food-info">
+                <div class="food-title">Delicious Burger</div>
+                <div class="food-desc">A classic beef burger with lettuce, cheese, and tomato.</div>
+                <div class="food-price">₹199</div>
+                <a href="/order.html"><button onclick="addItemToOrder('Delicious Burger', 199)">Add to cart</button></a>
+                
+            </div>
+        </div>
+        <div class="food-item">
+            <img src="Images/pizza.jpg" alt="Food 2">
+            <div class="food-info">
+                <div class="food-title">Margherita Pizza</div>
+                <div class="food-desc">Freshly baked pizza with tomato sauce, mozzarella cheese, and basil.</div>
+                <div class="food-price">₹399</div>
+                <a href="/order.html"><button onclick="addItemToOrder('Delicious pizza', 399) " >Add to cart</button></a>
+            </div>
+        </div>
+        <div class="food-item">
+            <img src="Images/frenchfries.jpg" alt="Food 3">
+            <div class="food-info">
+                <div class="food-title">Frenchfries</div>
+                <div class="food-desc">Taste a classic fired french fries with extra chause.</div>
+                <div class="food-price">₹99</div>
+                <a href="/order.html"><button onclick="addItemToOrder('Delicious frenchfries', 99)">Add to cart</button></a>
+            </div>
+        </div>
+        <div class="food-item">
+            <img src="Images/biriyani.jpg" alt="Food 4">
+            <div class="food-info">
+                <div class="food-title">Biriyani</div>
+                <div class="food-desc">A heavenly cooked chicken with rice and mixed with tasty masalas.</div>
+                <div class="food-price">₹199</div>
+                <a href="/order.html"><button onclick="addItemToOrder('Delicious Biriyani', 199)">Add to cart</button></a>
+            </div>
+        </div>
+        <div class="food-item">
+            <img src="Images/shawarma.jpg" alt="Food 5">
+            <div class="food-info">
+                <div class="food-title">Shawarma</div>
+                <div class="food-desc">A taste roll with meats and vegetables that you will fall.</div>
+                <div class="food-price">₹99</div>
+                <a href="order.html"><button onclick="addItemToOrder('Delicious hawarma', 99)">Add to cart</button></a>
+            </div>
+        </div>
+        <div class="food-item">
+            <img src="Images/mojito.jpg" alt="Food 6">
+            <div class="food-info">
+                <div class="food-title">Mojito</div>
+                <div class="food-desc">Have a drink and complete your meal.</div>
+                <div class="food-price">₹99</div>
+                <a href="order.html"><button onclick="addItemToOrder('Delicious mojito', 99)">Add to cart</button></a>
+            </div>
+        </div>
+        <div class="food-item">
+            <img src="Images/bucketchicken.jpg" alt="Food 1">
+            <div class="food-info">
+                <div class="food-title">Bucket Chicken</div>
+                <div class="food-desc">A bucket filled with crispy chicken.</div>
+                <div class="food-price">₹99</div>
+                <a href="order.html"><button onclick="addItemToOrder('Delicious bucketchicken', 99)">Add to cart</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

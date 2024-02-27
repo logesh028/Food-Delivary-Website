@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>zone delivery app</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-image: url(Images/home.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        header {
+            background-image: url('header.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+        section {
+            padding: 20px;
+        }
+        h1 {
+            height: 100%;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            color: aliceblue;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .food-item {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: calc(30.33% - 20px);
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .food-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .food-info {
+            padding: 10px;
+        }
+
+        .food-title {
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .food-desc {
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .food-price {
+            color: #ff6347;
+            margin-top: 10px;
+        }
+
+        button {
+            width: 94%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgb(255, 0, 17);
+        }
+
+        /* Animation */
+        @keyframes blinkAnimation {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        h2 {
+            height: 100%;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            animation: blinkAnimation 1s infinite;
+            color: #458e3a;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Food ZONE</h1>
+        <p>Get food from where you are</p>
+    </header>
+
+    <nav>
+        <a href="homepage.html">Home</a>
+        <a href="Items.html">Items</a>
+        <a href="order.html">Order</a>
+        <a href='contact.html'>Contact</a>
+    </nav>
+    <h1>Welcome to ZONE delivery</h1>
+        
+    <h2>Today's Offer 👇👇</h2>
+
+    <div class="container">
+        <div class="food-item">
+            <img src="Images/burger.jpg" alt="Food 1">
+            <div class="food-info">
+                <div class="food-title">Delicious Burger</div>
+                <div class="food-desc">A classic beef burger with lettuce, cheese, and tomato.</div>
+                <div class="food-price">₹300 ❌❌</div>
+                <div class="food-price">Today Offer ₹199 ✅✅</div>
+                <a href="/order.html"><button onclick="addItemToOrder('Delicious Burger', 199)">Add to cart</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    function validateForm() {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var errorMessage = document.getElementById('error-message');
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            errorMessage.innerText = 'Invalid email address';
+            return false;
+        }
+        if (password.length < 8) {
+            errorMessage.innerText = 'Password must be at least 8 characters long';
+            return false;
+        }
+        errorMessage.innerText = '';
+        return true;
+    }
+</script>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Order Summary</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('Images/items.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        h2{
+            color: #f9f9f9;
+        }
+        header {
+            background-image: url('header.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column; /* Updated */
+            align-items: center; /* Updated */
+            gap: 20px; /* Added */
+            padding-top: 50px; /* Adjusted */
+        }
+        #orderItems {
+            background-color: white; /* Added */
+            padding: 20px; /* Added */
+            border-radius: 10px; /* Added */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added */
+            max-width: 600px; /* Adjust as needed */
+            margin: 0 auto; /* Center the container */
+        }
+        .food-item {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+        }
+        .food-item img {
+            width: 100%;
+            height: 200px; 
+            object-fit: cover; 
+            display: block;
+            border-bottom: 1px solid #ddd;
+        }
+        .food-info {
+            padding: 10px;
+        }
+        .food-title {
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .food-desc {
+            color: #666;
+            margin: 5px 0;
+        }
+        .food-price {
+            color: #ff6347;
+            margin-top: 10px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between; /* Align items with space in between */
+            gap: 20px; /* Add space between buttons */
+        }
+        button {
+            padding: 10px 20px; /* Adjusted padding for smaller size */
+            font-size: 1rem; /* Adjusted font size */
+            border: none; /* Remove border */
+            cursor: pointer; /* Add pointer cursor */
+            border-radius: 5px; /* Add border radius */
+        }
+        button.remove-all-btn {
+            background-color: #ff2600; /* Red background color */
+            color: #ffffff; /* White text color */
+        }
+        button#placeOrderBtn {
+            background-color: #007bff; /* Blue background color */
+            color: #ffffff; /* White text color */
+        }
+        #totalPrice {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Order Summary</h1>
+    </header>
+    <nav>
+        <a href="homepage.html">Home</a>
+        <a href="Items.html">Items</a>
+        <a href="order.html">Order</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="container">
+        <h2>Items in Your Order:</h2>
+        <div id="orderItems"></div>
+        <div id="totalPrice"></div>
+    </div>
+    <footer>
+        <button onclick="placeOrder()" id="placeOrderBtn">Place Your Order</button>
+        <button onclick="removeSelectedItems()" class="remove-all-btn">Remove Selected Items</button>
+    </footer>
+
+    <script src="script.js" defer></script>
+    <script>
+        function removeItem(index) {
+            let orderItems = JSON.parse(localStorage.getItem('orderItems')) || [];
+            orderItems.splice(index, 1); 
+            localStorage.setItem('orderItems', JSON.stringify(orderItems));
+            location.reload(); 
+        }
+
+        let orderItems = JSON.parse(localStorage.getItem('orderItems')) || [];
+        let orderItemsContainer = document.getElementById('orderItems');
+        let totalPriceElement = document.getElementById('totalPrice');
+        let totalAmount = 0;
+
+        orderItems.forEach((item, index) => {
+            let itemElement = document.createElement('div');
+            itemElement.innerHTML = `
+                <input type="checkbox" class="remove-checkbox" onchange="toggleRemove(${index}, this)">
+                <p><strong>${item.name}</strong> - ₹${item.price}</p>
+            `;
+            orderItemsContainer.appendChild(itemElement);
+            totalAmount += item.price;
+        });
+
+        totalPriceElement.textContent = `Total Price: ₹${totalAmount.toFixed(2)}`;
+
+        function toggleRemove(index, checkbox) {
+            let orderItems = JSON.parse(localStorage.getItem('orderItems')) || [];
+            orderItems[index].remove = checkbox.checked;
+            localStorage.setItem('orderItems', JSON.stringify(orderItems));
+        }
+
+        function removeSelectedItems() {
+            let orderItems = JSON.parse(localStorage.getItem('orderItems')) || [];
+            let updatedOrderItems = orderItems.filter(item => !item.remove);
+            localStorage.setItem('orderItems', JSON.stringify(updatedOrderItems));
+            location.reload();
+        }
+
+        function placeOrder() {
+            // Place order logic
+            alert('Your order has been placed!');
+        }
+    </script>
+</body>
+</html>
